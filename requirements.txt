@@ -1,0 +1,18 @@
+#requirements с которыми будем роботать
+
+#Для миграций
+Ialembic==1.12.0
+
+#Капот, который будет отправлять запросы в базу(асинхронно)
+asyncpg==0.28.0
+psycopg==3.1.10
+psycopg-binary==3.1.10
+
+#Виновник торжества
+sqlalchemy==2.0.20
+
+
+fastapi==0.103.1
+pydantic==2.3.0
+pydantic-settings==2.0.3
+uvicorn==0.23.2
