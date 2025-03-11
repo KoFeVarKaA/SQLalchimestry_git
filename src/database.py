@@ -65,3 +65,17 @@ class Base(DeclarativeBase):
     type_annotation_map = {
         str_256 : String(256)
     }
+
+    # Переопределение способа вывода
+    # repr_cols_num и repr_cols можно менять в наследующем классе
+    repr_cols_num = 3
+    repr_cols = tuple()
+
+    def __repr__(self):
+        cols = []
+        for idx, col in enumerate(self.__table__.columns.keys()):
+            # Если выводить только первые 3 колонки
+            # if col in self.repr_cols or idx < self.repr_cols_num:
+            cols.append(f"{col}={getattr(self, col)}")
+
+        return f"\n<{self.__class__.__name__} {', '.join(cols)}>"

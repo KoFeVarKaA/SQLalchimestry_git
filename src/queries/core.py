@@ -1,10 +1,9 @@
-from sqlalchemy import insert, text
-from database import async_engine, sync_engine
-from src.models import metadata_obj, Workers
-from src.database import session_factory
+from sqlalchemy import insert, select, text
+from src.models import metadata_obj, Workers, Resumes
+from src.database import session_factory, async_engine, sync_engine
 
 
-class SyncORM:
+class SyncCore:
     @staticmethod
     #Создаем все таблицы через встроенный в метаданные метод - create_all(<название движка>)
     def create_tables():
@@ -43,6 +42,21 @@ class SyncORM:
             #Пригождается для генерации id или для данных, которые ссылаются на что-то
             # session.flush()
             session.commit()
+
+    @staticmethod
+    def select_workers(worker_id):
+        with session_factory() as session:
+            query = (
+                select(Resumes)
+                .filter(Resumes.id == worker_id)
+            )
+            res = session.execute(query)
+            result = res.all()
+            print(result)
+            if result == []:
+               print("False")
+            else:
+                print("True")
 
 class OtherFunc:
     #Синхронный вариант выполнения команд

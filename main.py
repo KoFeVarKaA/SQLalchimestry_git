@@ -1,4 +1,9 @@
-from src.queries.orm import create_tables, insert_data
-# from src.database import 
+from src.queries.orm import SyncORM
+from src.queries.core import SyncCore
 
-create_tables()
+# SyncORM.create_tables()
+# SyncORM.insert_workers()
+# SyncORM.insert_resumes()
+# SyncORM.select_workers_with_condition_relationship()
+# SyncORM.select_workers_with_condition_relationship_contains_eager()
+SyncCore.select_workers(2)
